@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "962253857523",
+    "project_id": "techacademy-8fbd1",
+    "storage_bucket": "techacademy-8fbd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962253857523:android:4f282d7c6eda5782590d86",
+        "android_client_info": {
+          "package_name": "com.example.tech_acadmy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8AenVAvvvZTsfrfqV2YoGiTBaE8tsbCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962253857523:android:bb412b7f30f2e13f590d86",
+        "android_client_info": {
+          "package_name": "com.tech_academy.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8AenVAvvvZTsfrfqV2YoGiTBaE8tsbCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
