@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icon_broken/icon_broken.dart';
 import 'package:tech_acadmy/Modules/TestApp/HistoryExams/HistoryScreen.dart';
-import 'package:tech_acadmy/Modules/TestApp/scienceLessonsScreen/ScienceScreen.dart';
 import 'package:tech_acadmy/Shared/Components/Components.dart';
 import 'package:tech_acadmy/Shared/styles/colors.dart';
 import '../../../Layout/TestAppLayout/cubit/cubit.dart';
 import '../../../Layout/TestAppLayout/cubit/states.dart';
 import '../../../Models/SocialApp/ResultModel.dart';
-import '../arabicExamsScreen/ExamArabicScreen.dart';
+import '../ExamsScreenNumber/ExamArabicScreen.dart';
 import '../arabicLessonsScreen/ArabicScreen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -127,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                             const Spacer(),
                             InkWell(
                               onTap: (){
-                                NavigateTo(context, const Examarabicscreen());
+                                NavigateTo(context, const examsScreenNumbers(name: 'arabic',));
                               },
                               child: Container(
                                 padding: const EdgeInsetsDirectional.all(7.0),
@@ -219,10 +218,12 @@ class HomeScreen extends StatelessWidget {
     onTap: (){
       if(varaiable.name == 'Technology'){
         TestCubit.get(context).getArabicLessonsNumber();
-        NavigateTo(context, const ArabicScreen());
+        NavigateTo(context, const LessonsScreen(name: 'arabic',));
+        print('arabic');
       }else{
         TestCubit.get(context).getScienceLessonsNumber();
-        NavigateTo(context, const ScienceScreen());
+        NavigateTo(context, const LessonsScreen(name: 'science',));
+        print('science');
       }
     },
     child: Container(
@@ -259,7 +260,7 @@ class HomeScreen extends StatelessWidget {
   ) ;
   Widget examItem(String name , context) => InkWell(
     onTap: (){
-      NavigateTo(context, const Examarabicscreen());
+      NavigateTo(context, const examsScreenNumbers(name: 'arabic',));
     },
     child: Container(
       decoration: BoxDecoration(

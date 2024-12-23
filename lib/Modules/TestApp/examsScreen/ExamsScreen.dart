@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_acadmy/Layout/TestAppLayout/cubit/cubit.dart';
 import 'package:tech_acadmy/Layout/TestAppLayout/cubit/states.dart';
-import 'package:tech_acadmy/Modules/TestApp/scienceExamsScreen/ExamScienceScreen.dart';
 import 'package:tech_acadmy/Shared/Components/Components.dart';
 import '../../../Shared/styles/colors.dart';
-import '../arabicExamsScreen/ExamArabicScreen.dart';
-
+import '../ExamsScreenNumber/ExamArabicScreen.dart';
 class examsScreen extends StatelessWidget {
   const examsScreen({super.key});
 
@@ -55,10 +53,10 @@ class examsScreen extends StatelessWidget {
     onTap: (){
       if(varaiable.name == 'Technology'){
         TestCubit.get(context).getArabicExamsNumber();
-        NavigateTo(context, Examarabicscreen());
+        NavigateTo(context, examsScreenNumbers(name: 'arabic',));
       }else{
         TestCubit.get(context).getScienceExamsNumber();
-        NavigateTo(context, examScienceScreen());
+        NavigateTo(context, examsScreenNumbers(name: 'science',));
         print('object');
       }
     },

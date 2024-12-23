@@ -7,28 +7,29 @@ import 'package:tech_acadmy/Layout/TestAppLayout/cubit/states.dart';
 import 'package:tech_acadmy/Shared/Components/Components.dart';
 import '../arabicLesson/Lesson.dart';
 
-class ArabicScreen extends StatelessWidget {
-  const ArabicScreen({super.key});
-
+class LessonsScreen extends StatelessWidget {
+  final String name ;
+  const LessonsScreen({super.key, required this.name});
   @override
   Widget build(BuildContext context) {
     return  BlocConsumer<TestCubit,TestStates>(
       builder: (BuildContext context, state) {
+
         var cubit = TestCubit.get(context) ;
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(onPressed: (){
               Navigator.pop(context);
             }, icon: Icon(Icons.arrow_back_ios)),
-            title: Text('Technology',style: TextStyle(fontSize: 20.0),),
+            title: Text( name == 'arabic' ? 'Technology' : 'Science',style: TextStyle(fontSize: 20.0),),
           ),
           body: ConditionalBuilder(
-              condition: cubit.arabiclessonsNumber.isNotEmpty,
+              condition: name == 'arabic' ? cubit.arabiclessonsNumber.isNotEmpty : cubit.scienceLessonsNumber.isNotEmpty,
               builder: (context) => ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return lessonsItem(index,context) ;
                 },
-                itemCount: cubit.arabiclessonsNumber.length,
+                itemCount: name == 'arabic' ? cubit.arabiclessonsNumber.length : cubit.scienceLessonsNumber.length,
               ),
               fallback: (context) => const Center(child: CircularProgressIndicator()),
           ),
@@ -38,9 +39,9 @@ class ArabicScreen extends StatelessWidget {
     );
   }
   Widget lessonsItem(index,context) => GestureDetector(
-    onTap: (){
-      TestCubit.get(context).getArabicLessons(TestCubit.get(context).arabiclessonsNumber[index]);
-      NavigateTo(context, const lesson());
+    onTap: () {
+      name == 'arabic' ? TestCubit.get(context).getArabicLessons(TestCubit.get(context).arabiclessonsNumber[index]) :  TestCubit.get(context).getScienceLessons(TestCubit.get(context).scienceLessonsNumber[index]);
+      NavigateTo(context, lesson(name: name,));
     },
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0 ,vertical: 5.0),
@@ -55,7 +56,7 @@ class ArabicScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                '${TestCubit.get(context).arabiclessonsNumber[index]}',
+                name == 'arabic' ?  '${TestCubit.get(context).arabiclessonsNumber[index]}' : '${TestCubit.get(context).scienceLessonsNumber[index]}',
               style: const TextStyle(
                   color: Colors.white,
                 fontWeight: FontWeight.w600,

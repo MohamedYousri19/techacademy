@@ -8,7 +8,8 @@ import 'package:tech_acadmy/Layout/TestAppLayout/cubit/states.dart';
 
 
 class lesson extends StatelessWidget {
-  const lesson({super.key});
+  final String name ;
+  const lesson({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class lesson extends StatelessWidget {
       builder: (BuildContext context, state) {
         var cubit = TestCubit.get(context) ;
         return  ConditionalBuilder(
-            condition: cubit.arabicLessons.isNotEmpty,
+            condition: name == 'arabic' ? cubit.arabicLessons.isNotEmpty : cubit.scienceLessons.isNotEmpty,
             builder: (context) => Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.indigo,
@@ -25,7 +26,7 @@ class lesson extends StatelessWidget {
                   cubit.listIndex == 0 ;
                   Navigator.pop(context);
                 }, icon: Icon(Icons.arrow_back_ios , color: Colors.white,)),
-                title: Text('${cubit.arabicLessons[cubit.listIndex].lesson}' , style: TextStyle(color: Colors.white , fontSize: 25.0),),
+                title: Text( name == 'arabic' ? '${cubit.arabicLessons[cubit.listIndex].lesson}' : '${cubit.scienceLessons[cubit.listIndex].lesson}' , style: TextStyle(color: Colors.white , fontSize: 25.0),),
               ),
               body: Container(
                 decoration: BoxDecoration(
@@ -53,7 +54,7 @@ class lesson extends StatelessWidget {
                           child: Column(
                             children: [
                               Container(
-                                child: CachedNetworkImage(imageUrl: '${cubit.arabicLessons[cubit.listIndex].image}',),
+                                child: CachedNetworkImage(imageUrl: name == 'arabic' ? '${cubit.arabicLessons[cubit.listIndex].image}' : '${cubit.scienceLessons[cubit.listIndex].image}',),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
@@ -63,7 +64,7 @@ class lesson extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                      '${cubit.arabicLessons[cubit.listIndex].data}',
+                                    name == 'arabic' ? '${cubit.arabicLessons[cubit.listIndex].data}' : '${cubit.scienceLessons[cubit.listIndex].data}' ,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(fontSize: 20.0),
                                     maxLines: 14,
@@ -76,16 +77,26 @@ class lesson extends StatelessWidget {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      if(cubit.listIndex < cubit.arabicLessons.length - 1 || cubit.listIndex == cubit.arabicLessons.length - 1 ){
-                                        if(cubit.listIndex == 0){
-                                          print('finish');
+                                      if(name == 'arabic'){
+                                        if(cubit.listIndex < cubit.arabicLessons.length - 1 || cubit.listIndex == cubit.arabicLessons.length - 1 ){
+                                          if(cubit.listIndex == 0){
+                                            print('finish');
+                                          }else{
+                                            cubit.changeIndex1();
+                                          }
                                         }else{
-                                          cubit.changeIndex1();
-                                          print(cubit.arabicLessons.length);
+                                          print('finished');
                                         }
                                       }else{
-                                        print('finished');
-                                        print(cubit.arabicLessons.length);
+                                        if(cubit.listIndex < cubit.scienceLessons.length - 1 || cubit.listIndex == cubit.scienceLessons.length - 1 ){
+                                          if(cubit.listIndex == 0){
+                                            print('finish');
+                                          }else{
+                                            cubit.changeIndex1();
+                                          }
+                                        }else{
+                                          print('finished');
+                                        }
                                       }
                                     },
                                     child: Container(
@@ -108,10 +119,18 @@ class lesson extends StatelessWidget {
                                   Spacer(),
                                   InkWell(
                                     onTap: () {
-                                      if(cubit.listIndex <  cubit.arabicLessons.length - 1 ){
-                                        cubit.changeIndex();
+                                      if(name == 'arabic'){
+                                        if(cubit.listIndex <  cubit.arabicLessons.length - 1 ){
+                                          cubit.changeIndex();
+                                        }else{
+                                          print('finished');
+                                        }
                                       }else{
-                                        print('finished');
+                                        if(cubit.listIndex <  cubit.scienceLessons.length - 1 ){
+                                          cubit.changeIndex();
+                                        }else{
+                                          print('finished');
+                                        }
                                       }
                                     },
                                     child: Container(

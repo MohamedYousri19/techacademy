@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +14,15 @@ import '../../../Network/Local/Cach_Helper.dart';
 
 class QuizPage extends StatefulWidget {
   final String request ;
-  const QuizPage({super.key, required this.request});
+  final String subjectName ;
+  const QuizPage({super.key, required this.request, required this.subjectName});
   @override
-  _QuizPageState createState() => _QuizPageState(request);
+  _QuizPageState createState() => _QuizPageState(request,subjectName);
 }
 
 class _QuizPageState extends State<QuizPage> {
   final String request ;
+  final String subjectName ;
   List<Question> questions = [];
   int currentIndex = 0;
   int? index ;
@@ -112,12 +113,12 @@ class _QuizPageState extends State<QuizPage> {
   Question? model;
   List<Question> questions1 = [] ;
 
-  _QuizPageState(this.request);
+  _QuizPageState(this.request, this.subjectName);
 
   Future<void> loadQuestions() async {
     QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collection('subjects')
-        .doc('arabic')
+        .doc(subjectName)
         .collection('exams')
         .doc(request)
         .collection('questions')
@@ -140,7 +141,7 @@ class _QuizPageState extends State<QuizPage> {
   Future<void> loadQuestionsName() async {
     FirebaseFirestore.instance
         .collection('subjects')
-        .doc('arabic')
+        .doc(subjectName)
         .collection('exams')
         .doc(request)
         .get()
