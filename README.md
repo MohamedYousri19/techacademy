@@ -1,16 +1,9 @@
 # tech_acadmy
 
-A new Flutter project.
+A new Flutter project for view lessons, take exams, view history exams and edit profile information.
 
-## Getting Started
+## Video Tutorial 
 
-This project is a starting point for a Flutter application.
+We have prepared a video tutorial to help you get started:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Uploading tech academy.mp4…
